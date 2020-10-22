@@ -30,9 +30,7 @@ class MainActivity : AppCompatActivity() {
         puntoBtn.setOnClickListener { numberPressed(".") }
 
         clearBtn.setOnClickListener { resetAll() }
-
         sumaBtn.setOnClickListener { operationPressed(SUMA) }
-
         igualBtn.setOnClickListener { resolvePressed() }
     }
 
@@ -61,14 +59,12 @@ class MainActivity : AppCompatActivity() {
 
     //Función cuando se presiona igual
     private fun resolvePressed(){
-
         val result = when(operacion) {
             SUMA -> num1 + num2
             else -> 0
         }
 
         num1 = result as Double
-
         resultadoText.text = if("$result".endsWith(".0")) { "$result".replace(".0","") } else { "%.2f".format(result) }
     }
 
