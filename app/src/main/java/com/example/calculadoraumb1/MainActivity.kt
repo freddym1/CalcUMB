@@ -8,6 +8,7 @@ class MainActivity : AppCompatActivity() {
     private var num1: Double = 0.0
     private var num2: Double = 0.0
     private var operacion: Int = 0
+    private var esresultado: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +32,16 @@ class MainActivity : AppCompatActivity() {
 
         clearBtn.setOnClickListener { resetAll() }
         sumaBtn.setOnClickListener { operationPressed(SUMA) }
+        restaBtn.setOnClickListener { operationPressed(RESTA) }
+        multiplicarBtn.setOnClickListener { operationPressed(MULTIPLICACION) }
         igualBtn.setOnClickListener { resolvePressed() }
     }
 
     //Función cuando se presiona un número
     private fun numberPressed(num: String){
-        if(resultadoText.text == "0" && num != ".") {
+        if(resultadoText.text == "0" && num != "." || esresultado ) {
             resultadoText.text = "$num"
+            esresultado = false;
         } else {
             resultadoText.text = "${resultadoText.text}$num"
         }
@@ -59,8 +63,11 @@ class MainActivity : AppCompatActivity() {
 
     //Función cuando se presiona igual
     private fun resolvePressed(){
+        esresultado = true;
         val result = when(operacion) {
             SUMA -> num1 + num2
+            RESTA -> num1 - num2
+            MULTIPLICACION -> num1 * num2
             else -> 0
         }
 
@@ -77,6 +84,8 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val SUMA = 1
+        const val RESTA = 2
+        const val MULTIPLICACION = 3
         const val SIN_OPERACION = 0
     }
 }
