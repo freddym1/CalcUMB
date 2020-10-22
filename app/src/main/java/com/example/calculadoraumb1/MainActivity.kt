@@ -1,7 +1,7 @@
 package com.example.calculadoraumb1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         sumaBtn.setOnClickListener { operationPressed(SUMA) }
         restaBtn.setOnClickListener { operationPressed(RESTA) }
         multiplicarBtn.setOnClickListener { operationPressed(MULTIPLICACION) }
+        divisionBtn.setOnClickListener { operationPressed(DIVISION) }
         igualBtn.setOnClickListener { resolvePressed() }
     }
 
@@ -68,11 +69,12 @@ class MainActivity : AppCompatActivity() {
             SUMA -> num1 + num2
             RESTA -> num1 - num2
             MULTIPLICACION -> num1 * num2
+            DIVISION -> num1 / num2
             else -> 0
         }
 
         num1 = result as Double
-        resultadoText.text = if("$result".endsWith(".0")) { "$result".replace(".0","") } else { "%.2f".format(result) }
+        resultadoText.text = if("$result".endsWith(".0")) { "$result".replace(".0", "") } else { "%.2f".format(result) }
     }
 
     //Función cuando se presiona clear
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity() {
         const val SUMA = 1
         const val RESTA = 2
         const val MULTIPLICACION = 3
+        const val DIVISION = 4
         const val SIN_OPERACION = 0
     }
 }
