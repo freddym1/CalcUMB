@@ -59,7 +59,13 @@ class MainActivity : AppCompatActivity() {
         this.operacion = operacion
         num1 = resultadoText.text.toString().toDouble()
 
-        resultadoText.text = ""
+        if(num1% 1.0 == 0.0){
+            resultadoText.text = num1.toInt().toString()
+        }else{
+            resultadoText.text = num1.toString()
+        }
+
+        esresultado = true
     }
 
     //Función cuando se presiona igual
